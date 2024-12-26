@@ -34,5 +34,5 @@ export class MovieApi extends BaseApi {
   }
 
   @Delete("{id}")
-  async delete(@UrlParam("id") _id: number) {}
+  async delete(@UrlParam("id") _id: number | string) {}
 }

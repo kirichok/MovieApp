@@ -3,7 +3,7 @@ export interface IMovie {
   title: string;
   year: number;
   format: string;
-  actors: string[];
+  actors: { name: string; id: number }[];
 }
 
 export interface IMovieParams {

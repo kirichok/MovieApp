@@ -9,7 +9,7 @@ import Form from "@effijs/form-react";
 import TextInput from "@/components/TextInput";
 import Button from "@/components/Button";
 
-export default function SignInForm() {
+export default function AuthSignInForm() {
   const { authModule } = useModules();
   const formStore = useMemo(() => new Store.Form({}, SignInFormValidator), []);
   const { navigate } = useNavigation();
@@ -19,6 +19,7 @@ export default function SignInForm() {
   }, [formStore]);
 
   const onSignUp = useCallback(() => {
+    // @ts-ignore
     navigate("SignUp");
   }, []);
 

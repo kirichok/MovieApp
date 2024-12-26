@@ -39,7 +39,7 @@ export class MovieController {
   }
 
   @CatchError
-  removeMovie(id: number) {
+  removeMovie(id: number | string) {
     return this.service.delete(id);
   }
 }

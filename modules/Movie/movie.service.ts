@@ -40,7 +40,7 @@ export class MovieService {
     router.back();
   }
 
-  async delete(id: number) {
+  async delete(id: number | string) {
     await this.api.delete(id);
     await this.get();
   }

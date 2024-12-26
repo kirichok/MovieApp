@@ -6,9 +6,10 @@ import { IMovie } from "@/modules/Movie/movie.types";
 import { useStore } from "@/utils/useStore";
 import { Navigator, router, useLocalSearchParams } from "expo-router";
 import Screen = Navigator.Screen;
+import React from "react";
 
 export default function MovieListItem() {
-  const { id } = useLocalSearchParams();
+  const { id } = useLocalSearchParams<{ id: string }>();
   const { movieModule } = useModules();
 
   useEffect(() => {
