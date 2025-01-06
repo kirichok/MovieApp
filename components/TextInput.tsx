@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import {
   StyleSheet,
   Text,
@@ -5,8 +6,8 @@ import {
   TextInputProps,
   View,
 } from "react-native";
-import Title from "@/components/Title";
-import { useCallback } from "react";
+import Title from "./Title";
+import { ErrorMessage } from "./ErrorMessage";
 
 interface ITextInputProps extends Omit<TextInputProps, "onChange"> {
   title?: string;
@@ -49,23 +50,6 @@ export default function TextInput({
   );
 }
 
-function ErrorMessage({
-  error,
-}: {
-  error?: { message: string; property?: string }[];
-}) {
-  if (!error?.length) return null;
-  return (
-    <Text style={styles.errorText}>
-      {error
-        .map(({ message, property }) =>
-          message.format({ property: property || "" }),
-        )
-        .join("\n")}
-    </Text>
-  );
-}
-
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
@@ -79,5 +63,4 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 16,
   },
-  errorText: { color: "red", alignSelf: "flex-end" },
 });

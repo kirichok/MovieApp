@@ -60,12 +60,10 @@ export default function MovieListItem() {
         <Info title="Year" value={movie.year} />
         <Info title="Format" value={movie.format} />
         <Info title="Actors">
-          <View style={{ gap: 8, flexDirection: "row" }}>
-            {movie.actors?.map((actor) => (
-              <Text key={actor?.id} style={styles.actor}>
-                {actor?.name}
-              </Text>
-            ))}
+          <View style={{ gap: 8, flexDirection: "row", flexWrap: "wrap" }}>
+            <Text style={styles.actor}>
+              {movie.actors?.map((actor, i, a) => actor?.name).join(", ")}
+            </Text>
           </View>
         </Info>
       </View>
@@ -83,13 +81,21 @@ function Info({
   children?: React.ReactNode;
 }) {
   return (
-    <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
+    <View style={{ flexDirection: "row", /*alignItems: "center",*/ gap: 8 }}>
       <Text
-        style={{ textAlign: "right", width: 80, fontSize: 16, color: "#555" }}
+        style={{
+          textAlign: "right",
+          width: 80,
+          fontSize: 16,
+          color: "#555",
+          marginTop: 2,
+        }}
       >
         {title}:
       </Text>
-      {children || <Text style={{ fontSize: 18 }}>{value}</Text>}
+      <View style={{ flex: 1 }}>
+        {children || <Text style={{ fontSize: 18 }}>{value}</Text>}
+      </View>
     </View>
   );
 }

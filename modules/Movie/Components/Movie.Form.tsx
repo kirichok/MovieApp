@@ -3,12 +3,13 @@ import Form from "@effijs/form-react";
 import TextInput from "@/components/TextInput";
 import React, { useCallback, useMemo } from "react";
 import { Store } from "@effijs/common";
-import Button from "@/components/Button";
+import Button, { ButtonTonal } from "@/components/Button";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useModules } from "@/modules/useModules";
 import { MovieFormValidator } from "@/modules/Movie/movie.validator";
 import Title from "@/components/Title";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { ErrorMessage } from "@/components/ErrorMessage";
 
 export default function MovieForm() {
   const { movieModule } = useModules();
@@ -36,7 +37,7 @@ export default function MovieForm() {
             />
           </Form.Item>
           <Form.Item name={"format"}>
-            <TextInput title="Format" placeholder="Format ...(DVD, VHS)" />
+            <MovieFormatType />
           </Form.Item>
 
           <View style={{ gap: 8 }}>
@@ -96,5 +97,35 @@ function Actors({
       </View>
       {/*{isLast ? <Button onPress={onAdd}>Add</Button> : null}*/}
     </>
+  );
+}
+
+const movieFormatOptions = ["DVD", "VHS", "Blu-ray"];
+
+function MovieFormatType({
+  error,
+  value,
+  onChange,
+}: {
+  error?: any;
+  value?: string;
+  onChange?: any;
+}) {
+  return (
+    <View>
+      <Title>Format</Title>
+      <View style={{ flexDirection: "row", gap: 8 }}>
+        {movieFormatOptions.map((type) => (
+          <ButtonTonal
+            key={type}
+            isActive={value === type}
+            onPress={() => onChange(type)}
+          >
+            {type}
+          </ButtonTonal>
+        ))}
+      </View>
+      <ErrorMessage error={error} />
+    </View>
   );
 }

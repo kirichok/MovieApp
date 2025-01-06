@@ -5,7 +5,10 @@ import { Validator } from "@effijs/common";
 })
 export class MovieFormValidator {
   @Validator.Decorators.Property()
-  @Validator.Decorators.IsDefined()
+  @Validator.Decorators.Validator(
+    (value) => value.length >= 2,
+    "Title must be at least 2 characters long",
+  )
   title?: string;
 
   @Validator.Decorators.Property()
@@ -30,6 +33,9 @@ export class MovieFormValidator {
 
 class Actor {
   @Validator.Decorators.Property()
-  @Validator.Decorators.IsDefined()
+  @Validator.Decorators.Validator(
+    (value) => value.length >= 2,
+    "Actor name must be at least 2 characters long",
+  )
   name?: string;
 }
